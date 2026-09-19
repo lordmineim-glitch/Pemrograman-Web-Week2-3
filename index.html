@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  WATCH_DOGS // DIGITAL IDENTITY
+  index.html — struktur & markup
+  Owner  : Rafi  (UI / struktur / data)
+  ------------------------------------------------------------
+  Catatan buat Sena:
+  - Semua node yang kamu butuhin udah punya id. Jangan ganti id-nya
+    ya, ui.js ikut refer ke situ.
+  - Urutan <script> penting: ui.js duluan (dia yang bikin window.WD),
+    baru fx.js. Dua-duanya defer.
+  ============================================================
+-->
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WATCH_DOGS // DIGITAL IDENTITY</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- layout, warna, komponen -->
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- keyframes & efek gerak (punya Sena) -->
+<link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<!-- ========== LATAR ========== -->
+<div class="grid-bg"></div>
+<canvas id="bgfx"></canvas>
+<div class="vignette"></div>
+
+<!-- ========== PERANGKAT ========== -->
+<div class="stage">
+  <div class="phone">
+    <div class="btn-side pw"></div>
+    <div class="btn-vol a"></div>
+    <div class="btn-vol b"></div>
+
+    <div class="screen">
+      <div class="notch"><i class="lens"></i><b></b><i></i></div>
+
+      <!-- lapisan efek layar -->
+      <div class="noise"></div>
+      <div class="scanlines"></div>
+      <div class="sweep"></div>
+
+      <!-- ========== BOOT (diisi fx.js) ========== -->
+      <div class="boot" id="boot">
+        <div class="brand">WATCH_DOGS</div>
+        <div class="bootbar"><span id="bootbar"></span></div>
+        <div class="log" id="bootlog"></div>
+      </div>
+
+      <!-- ========== STATUS BAR ========== -->
+      <div class="statusbar">
+        <span id="sbclock">--:--</span>
+        <span class="right">
+          <span>ctOS</span><span>▂▄▆</span><span class="batt"></span>
+        </span>
+      </div>
+
+      <!-- ========== APP BAR ========== -->
+      <div class="appbar">
+        <div>
+          <div class="logo">WATCH<span>_DOGS</span></div>
+          <div class="online"><i class="dot"></i>SYSTEM ONLINE</div>
+        </div>
+        <div class="appbar-right">
+          <div class="clock" id="clock">00:00:00</div>
+          <button class="edit" id="editBtn" type="button">EDIT DATA</button>
+        </div>
+      </div>
+
+      <!-- ========== ISI LAYAR ========== -->
+      <div class="content" id="content">
+
+        <!-- 1. kartu identitas -->
+        <section class="card reveal" id="cardId">
+          <i class="corner tl"></i><i class="corner br"></i>
+          <div class="kicker">IDENTITY CARD</div>
+          <div class="idrow">
+            <div class="photo">
+              <img id="photoImg" alt="Foto profil" hidden>
+              <div class="ph" id="photoPh">
+                <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" aria-hidden="true">
+                  <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.6-9 5.8V22h18v-2.2c0-3.2-4-5.8-9-5.8Z"/>
+                </svg>
+              </div>
+              <div class="frame"></div>
+              <div class="scanbar"></div>
+              <div class="tick">IMG_01</div>
+            </div>
+
+            <div class="idmeta">
+              <div class="name glitch" id="fName" data-t="">—</div>
+              <div class="handle" id="fUser">—</div>
+              <div class="nim">NIM &nbsp;<b id="fNim">—</b></div>
+              <div class="verified pending" id="vBadge">
+                <i class="dot solid"></i><span id="vText">AWAITING SCAN</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. senjata favorit -->
+        <section class="card reveal" id="cardWeapon">
+          <i class="corner tl"></i><i class="corner br"></i>
+          <div class="kicker">FAVORITE WEAPON</div>
+          <div class="weapon-top">
+            <svg class="wicon" viewBox="0 0 120 60" fill="none" aria-hidden="true">
+              <path d="M6 20h62l10 6h26v10h-14l-6 8H62l-8 12H38l6-12H24l-6-8H6z" fill="currentColor" opacity=".18"/>
+              <path d="M6 20h62l10 6h26v10h-14l-6 8H62l-8 12H38l6-12H24l-6-8H6z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M30 26h26M30 32h18" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+              <circle cx="88" cy="31" r="2.6" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <div>
+              <div class="wname" id="fWeapon">—</div>
+              <div class="wclass" id="fWclass">CLASS · UNKNOWN</div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">DAMAGE<span class="bar"><i data-v="82"></i></span><b>82</b></div>
+            <div class="stat">RANGE<span class="bar"><i data-v="64"></i></span><b>64</b></div>
+            <div class="stat">ACCURACY<span class="bar"><i data-v="91"></i></span><b>91</b></div>
+          </div>
+        </section>
+
+        <!-- 3. data dekoratif -->
+        <section class="card reveal" id="cardData">
+          <i class="corner tl"></i><i class="corner br"></i>
+          <div class="kicker">DIGITAL INFORMATION</div>
+          <div class="datalist">
+            <div class="datarow"><span>USER ID</span><b id="fUid">—</b></div>
+            <div class="datarow"><span>SECURITY LEVEL</span><b class="good">TIER 04 / ELEVATED</b></div>
+            <div class="datarow"><span>CONNECTION</span><b class="good">ENCRYPTED · 256-BIT</b></div>
+            <div class="datarow"><span>LAST LOGIN</span><b id="fLast">—</b></div>
+            <div class="datarow"><span>LOCATION</span><b class="unknown">UNKNOWN</b></div>
+          </div>
+        </section>
+
+        <!-- 4. aksi -->
+        <div class="actions reveal" id="cardActs">
+          <button class="act" id="btnAccess" type="button">[ ACCESS PROFILE ]</button>
+          <button class="act ghost" id="btnScan" type="button">[ SCAN IDENTITY ]</button>
+        </div>
+
+        <!-- 5. terminal output -->
+        <div class="term reveal" id="term">&gt; system idle<span class="cur"></span></div>
+      </div>
+
+      <!-- ========== FOOTER ========== -->
+      <div class="foot">
+        <div class="enc">▚ DATA ENCRYPTED ▚</div>
+        <div>© 2026 DIGITAL IDENTITY SYSTEM</div>
+        <div class="homebar"></div>
+      </div>
+
+      <!-- ========== OVERLAY SCAN (dikendalikan fx.js) ========== -->
+      <div class="scan" id="scan">
+        <div class="reticle" id="reticle">
+          <div class="ring"></div><div class="ring2"></div>
+          <div class="cross">BIOMETRIC</div>
+        </div>
+        <div class="pct" id="pct">0%</div>
+        <div class="pbar"><i id="pbar"></i></div>
+        <div class="scanmsg" id="scanmsg">INITIALIZING SCANNER</div>
+        <div class="granted" id="granted">
+          <div class="big">IDENTITY VERIFIED</div>
+          <div class="sub">ACCESS GRANTED</div>
+        </div>
+      </div>
+
+      <!-- ========== PANEL EDIT DATA ========== -->
+      <div class="sheet" id="sheet">
+        <h2>PROFILE DATA</h2>
+        <div class="field"><label for="inName">NAMA</label><input id="inName" maxlength="40" placeholder="Nama lengkap"></div>
+        <div class="field"><label for="inUser">USERNAME INGAME</label><input id="inUser" maxlength="30" placeholder="@username"></div>
+        <div class="field"><label for="inWeapon">SENJATA FAVORIT</label><input id="inWeapon" maxlength="30" placeholder="Nama senjata"></div>
+        <div class="field"><label for="inNim">NIM</label><input id="inNim" maxlength="24" placeholder="Nomor induk mahasiswa"></div>
+        <label class="filebtn" for="inPhoto">PILIH FOTO PROFIL</label>
+        <input type="file" id="inPhoto" accept="image/*" hidden>
+        <p class="hint">Foto disimpan di perangkat ini saja, tidak diunggah ke mana pun.</p>
+        <div class="row">
+          <button class="act" id="saveBtn" type="button">[ SIMPAN ]</button>
+          <button class="act ghost" id="closeBtn" type="button">[ TUTUP ]</button>
+        </div>
+      </div>
+
+    </div><!-- /screen -->
+  </div><!-- /phone -->
+</div><!-- /stage -->
+
+<script src="assets/js/ui.js" defer></script>
+<script src="assets/js/fx.js" defer></script>
+</body>
+</html>
