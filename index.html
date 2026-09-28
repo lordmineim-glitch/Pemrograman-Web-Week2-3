@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Profile - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================= -->
+  <!-- INTRO OVERLAY - efek petasan pas pertama buka Home         -->
+  <!-- Warna & jumlah petasan bisa diubah/ditambah bebas di sini  -->
+  <!-- ========================================================= -->
+  <div id="intro-overlay">
+    <span class="firework" style="left:20%; top:30%; background:var(--purple); animation-delay:0s;"></span>
+    <span class="firework" style="left:70%; top:25%; background:var(--cyan); animation-delay:0.15s;"></span>
+    <span class="firework" style="left:35%; top:65%; background:var(--pink); animation-delay:0.3s;"></span>
+    <span class="firework" style="left:80%; top:60%; background:var(--blue); animation-delay:0.45s;"></span>
+    <span class="firework" style="left:50%; top:45%; background:var(--purple); animation-delay:0.6s;"></span>
+    <p class="intro-text">GG.PROFILE</p>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- NAVBAR (sama di semua halaman) -->
+  <!-- ========================================================= -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">GG.PROFILE</a>
+      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="profile1.html">Profil 1</a></li>
+        <li><a href="profile2.html">Profil 2</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================================================= -->
+  <!-- HERO SECTION -->
+  <!-- ========================================================= -->
+  <header class="hero">
+    <div class="container">
+      <h1>Welcome to Our Gaming Profile</h1>
+      <p>
+        Halaman perkenalan singkat dua orang gamer, lengkap dengan
+        rank, hobi, dan momen seru di dunia game.
+      </p>
+      <div class="hero-buttons">
+        <a href="profile1.html" class="btn btn-primary">Lihat Profil 1</a>
+        <a href="profile2.html" class="btn btn-outline">Lihat Profil 2</a>
+      </div>
+
+      <!-- Dekorasi icon melayang, ringan dan simpel -->
+      <div class="floating-icons">
+        <span>🎮</span>
+        <span>🏆</span>
+        <span>⚡</span>
+      </div>
+
+      <!-- Ganti src di bawah dengan foto asli lagi main game -->
+<img src="images/Screenshot 2026-09-26 220613.png" alt="Sedang bermain game" class="hero-photo">
+
+<!-- Ganti src di bawah dengan video asli lagi main game (vertikal 9:16) -->
+<video class="hero-video" controls playsinline>
+  <source src="Videos/WhatsApp Video 2026-09-27 at 12.31.14.mp4" type="video/mp4">
+</video>
+    </div>
+  <!-- ========================================================= -->
+  <!-- SECTION SINGKAT NAVIGASI CEPAT -->
+  <!-- ========================================================= -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Jelajahi Halaman</h2>
+      <p class="section-subtitle">Semua informasi tersedia di halaman terpisah biar rapi.</p>
+
+      <div class="card-grid">
+        <div class="profile-card">
+          <h3 class="card-title">Profil 1</h3>
+          <p>Data diri lengkap orang pertama.</p>
+        </div>
+        <div class="profile-card">
+          <h3 class="card-title">Profil 2</h3>
+          <p>Data diri orang kedua (masih kosong, siap diisi).</p>
+        </div>
+        <div class="profile-card">
+          <h3 class="card-title">Gaming</h3>
+          <p>Rank Mobile Legends dan Valorant.</p>
+        </div>
+        <div class="profile-card">
+          <h3 class="card-title">Gallery</h3>
+          <p>Kumpulan foto seru.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION SQUAD RANK - ganti rank di bawah kalau berubah     -->
+  <!-- ========================================================= -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Squad Rank</h2>
+      <p class="section-subtitle">Rank terkini dari kedua member.</p>
+
+      <div class="card-grid">
+        <div class="gaming-card">
+          <h3 class="card-title">Vlammen2ee</h3>
+          <p>Mobile Legends</p>
+          <span class="rank-badge">Legend</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+        </div>
+        <div class="gaming-card">
+          <h3 class="card-title">Vlammen2ee</h3>
+          <p>Valorant</p>
+          <span class="rank-badge">Bronze</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+        </div>
+        <div class="gaming-card">
+          <h3 class="card-title">ISC_V21</h3>
+          <p>Mobile Legends</p>
+          <span class="rank-badge">Legend</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+        </div>
+        <div class="gaming-card">
+          <h3 class="card-title">ISC_V21</h3>
+          <p>Valorant</p>
+          <span class="rank-badge">Diamond</span>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Gaming Personal Profile</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
